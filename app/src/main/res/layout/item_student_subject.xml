@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtSubName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name: "
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/blue" />
+
+            <TextView
+                android:id="@+id/txtSubNameClass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Class: "
+                android:textSize="20dp"
+                android:textColor="@color/blue" />
+
+            <TextView
+                android:id="@+id/txtSubTimeStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start time: "
+                android:textSize="20dp"
+                android:textColor="@color/blue" />
+
+            <TextView
+                android:id="@+id/txtSubTimeEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="End time: "
+                android:textSize="20dp"
+                android:textColor="@color/blue" />
+
+            <TextView
+                android:id="@+id/txtSubClassroom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Classroom: "
+                android:textSize="20dp"
+                android:textColor="@color/blue" />
+
+        </LinearLayout>
+
+        <RadioButton
+            android:id="@+id/rbRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+        </RadioButton>
+    </LinearLayout>
+</LinearLayout>

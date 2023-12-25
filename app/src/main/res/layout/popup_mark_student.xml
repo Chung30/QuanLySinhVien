@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/txtName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:text="Name" />
+
+    <EditText
+        android:id="@+id/txtScore1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Score 1: "
+        android:inputType="number"/>
+
+    <EditText
+        android:id="@+id/txtScore2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Score 2: "
+        android:inputType="number" />
+
+
+    <EditText
+        android:id="@+id/txtFinalScore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Final score: "
+        android:inputType="number" />
+
+</LinearLayout>

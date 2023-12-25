@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="150dp"
+            android:layout_height="170dp"
+            android:src="@drawable/user" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtSubName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name: "
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/blue" />
+
+            <TextView
+                android:id="@+id/txtSubNameClass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Class: "
+                android:textSize="20dp"
+                android:textColor="@color/blue" />
+
+            <TextView
+                android:id="@+id/txtSubTimeStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start time: "
+                android:textSize="20dp"
+                android:textColor="@color/blue" />
+
+            <TextView
+                android:id="@+id/txtSubTimeEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="End time: "
+                android:textSize="20dp"
+                android:textColor="@color/blue" />
+
+            <TextView
+                android:id="@+id/txtSubClassroom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Classroom: "
+                android:textSize="20dp"
+                android:textColor="@color/blue" />
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
