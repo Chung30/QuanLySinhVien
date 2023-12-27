@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".View.Admin.ViewPageAccount">
+    tools:context="com.example.doanqlsinhvien.View.Admin.ViewPageAccount">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout_acc"

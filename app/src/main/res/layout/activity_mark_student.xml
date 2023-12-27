@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.Student.MarkStudent">
+    tools:context="com.example.doanqlsinhvien.View.Student.MarkStudent">
 
     <GridView
         android:id="@+id/gridViewSubjectMark"

@@ -13,37 +13,37 @@
         android:theme="@style/Theme.DoAnQLSinhVien"
         tools:targetApi="31">
         <activity
-            android:name=".View.Student.MarkStudent"
+            android:name="com.example.doanqlsinhvien.View.Student.MarkStudent"
             android:exported="false" />
         <activity
-            android:name=".View.Teacher.MarkTeacher"
+            android:name="com.example.doanqlsinhvien.View.Teacher.MarkTeacher"
             android:exported="false" />
         <activity
-            android:name=".View.Student.CalenderStudent"
+            android:name="com.example.doanqlsinhvien.View.Student.CalenderStudent"
             android:exported="false" />
         <activity
-            android:name=".View.Teacher.CalenderTeacher"
+            android:name="com.example.doanqlsinhvien.View.Teacher.CalenderTeacher"
             android:exported="false" />
         <activity
-            android:name=".View.Admin.ViewSubject"
+            android:name="com.example.doanqlsinhvien.View.Admin.ViewSubject"
             android:exported="false" />
         <activity
-            android:name=".View.Admin.ViewPageAccount"
+            android:name="com.example.doanqlsinhvien.View.Admin.ViewPageAccount"
             android:exported="false" />
         <activity
-            android:name=".View.Admin.MainAdmin"
+            android:name="com.example.doanqlsinhvien.View.Admin.MainAdmin"
             android:exported="false" />
         <activity
-            android:name=".View.Student.MainStudent"
+            android:name="com.example.doanqlsinhvien.View.Student.MainStudent"
             android:exported="false" />
         <activity
-            android:name=".View.Teacher.MainTeacher"
+            android:name="com.example.doanqlsinhvien.View.Teacher.MainTeacher"
             android:exported="false" />
         <activity
-            android:name=".View.Student.RegisterLearn"
+            android:name="com.example.doanqlsinhvien.View.Student.RegisterLearn"
             android:exported="false" />
         <activity
-            android:name=".View.Login"
+            android:name="com.example.doanqlsinhvien.View.Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

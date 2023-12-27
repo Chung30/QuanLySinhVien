@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "vn.itplus.doanqlsinhvien"
+    namespace = "com.example.doanqlsinhvien"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "vn.itplus.doanqlsinhvien"
+        applicationId = "com.example.doanqlsinhvien"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -23,6 +23,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
     compileOptions {
