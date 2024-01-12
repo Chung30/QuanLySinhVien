@@ -3,15 +3,18 @@ package com.example.doanqlsinhvien.View.Admin.FragmentAcc;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -33,12 +36,13 @@ public class StudentFragment extends Fragment {
     private final ArrayList<student> students = new ArrayList<>();
     private SQLiteAdapter sqlite;
     private FloatingActionButton fabAddStudent;
-
+    private EditText txtSearch;
+    private ImageButton btnSearch;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sqlite = new SQLiteAdapter(requireContext());
-        UpdateStudents();
+        UpdateStudents("");
     }
 
     @Nullable
@@ -47,11 +51,26 @@ public class StudentFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_acc_student, container, false);
 
         fabAddStudent = view.findViewById(R.id.fabAdd_Student);
+        txtSearch = view.findViewById(R.id.txtSearch);
+        btnSearch = view.findViewById(R.id.btnSearch);
+
         ShowStudents(view);
+
+        btnSearch.setOnClickListener(v -> {
+            UpdateStudents(txtSearch.getText().toString().trim());
+            txtSearch.clearFocus();
+            hideKeyboard(view);
+            ShowStudents(view);
+        });
 
         fabAddStudent.setOnClickListener(v -> showItemDialog(-1));
 
         return view;
+    }
+
+    private void hideKeyboard(View view) {
+        InputMethodManager imm = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     private void ShowStudents(View view) {
@@ -62,10 +81,18 @@ public class StudentFragment extends Fragment {
         grid.setOnItemClickListener((parent, view1, position, id) -> showItemDialog(position));
     }
 
-    private void UpdateStudents() {
+    private void UpdateStudents(String s) {
         sqlite.Open();
-        Cursor students = sqlite.SQLTable("SELECT * FROM Student");
+        Cursor students;
 
+        if(s.equals("")){
+            students = sqlite.SQLTable("SELECT * FROM Student");
+        }
+        else {
+            students = sqlite.SQLTable("SELECT * FROM Student where name LIKE '%" + s + "%'");
+        }
+
+        this.students.clear();
         while (students.moveToNext()) {
             try {
                 int idStudent = students.getInt(0);

@@ -2,13 +2,16 @@ package com.example.doanqlsinhvien.View.Admin.FragmentAcc;
 
 import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -28,12 +31,13 @@ public class AdminFragment extends Fragment {
     private ArrayList<account> admins = new ArrayList<>();
     private SQLiteAdapter sqlite;
     private FloatingActionButton fabAddAdmin;
-
+    private EditText txtSearch;
+    private ImageButton btnSearch;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sqlite = new SQLiteAdapter(requireContext());
-        UpdateAdmin();
+        UpdateAdmin("");
     }
 
     @Nullable
@@ -42,12 +46,28 @@ public class AdminFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_acc_admin, container, false);
 
         fabAddAdmin = view.findViewById(R.id.fabAdd_Admin);
+        txtSearch = view.findViewById(R.id.txtSearch);
+        btnSearch = view.findViewById(R.id.btnSearch);
+
         ShowAdmin(view);
+
+        btnSearch.setOnClickListener(v -> {
+            UpdateAdmin(txtSearch.getText().toString().trim());
+            txtSearch.clearFocus();
+            hideKeyboard(view);
+            ShowAdmin(view);
+        });
 
         fabAddAdmin.setOnClickListener(v -> showItemDialog(-1));
 
         return view;
     }
+
+    private void hideKeyboard(View view) {
+        InputMethodManager imm = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
     private void showItemDialog(int position) {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
         LayoutInflater inflater = getLayoutInflater();
@@ -127,10 +147,18 @@ public class AdminFragment extends Fragment {
         });
     }
 
-    private void UpdateAdmin() {
+    private void UpdateAdmin(String s) {
         sqlite.Open();
-        Cursor cursor = sqlite.SQLTable("SELECT userName, password FROM Account where aStatement = 1");
+        Cursor cursor;
+        if(s.equals("")){
+            cursor = sqlite.SQLTable("SELECT userName, password FROM Account where aStatement = 1");
+        }
+        else{
+            cursor = sqlite.SQLTable("SELECT userName, password FROM Account " +
+                    "WHERE aStatement = 1 AND userName LIKE '%" + s + "%'");
+        }
 
+        this.admins.clear();
         while (cursor.moveToNext()) {
             try {
                 String userName = cursor.getString(0);

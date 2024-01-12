@@ -2,14 +2,17 @@ package com.example.doanqlsinhvien.View.Admin.FragmentAcc;
 
 import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -31,18 +34,27 @@ public class TeacherFragment extends Fragment {
     private ArrayList<teacher> teachers = new ArrayList<>();
     private SQLiteAdapter sqlite;
     private FloatingActionButton fabAddTeacher;
-
+    private EditText txtSearch;
+    private ImageButton btnSearch;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sqlite = new SQLiteAdapter(requireContext());
-        UpdateTeachers();
+        UpdateTeachers("");
     }
 
-    private void UpdateTeachers() {
+    private void UpdateTeachers(String s) {
         sqlite.Open();
-        Cursor cursor = sqlite.SQLTable("SELECT * FROM Teacher");
 
+        Cursor cursor;
+        if(s.equals("")){
+            cursor = sqlite.SQLTable("SELECT * FROM Teacher");
+        }
+        else{
+            cursor = sqlite.SQLTable("SELECT * FROM Teacher where name LIKE '%" + s + "%'");
+        }
+
+        this.teachers.clear();
         while (cursor.moveToNext()) {
             try {
                 int id = cursor.getInt(0);
@@ -67,11 +79,26 @@ public class TeacherFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_acc_teacher, container, false);
 
         fabAddTeacher = view.findViewById(R.id.fabAdd_Teacher);
+        txtSearch = view.findViewById(R.id.txtSearch);
+        btnSearch = view.findViewById(R.id.btnSearch);
+
         ShowTeachers(view);
+
+        btnSearch.setOnClickListener(v -> {
+            UpdateTeachers(txtSearch.getText().toString().trim());
+            txtSearch.clearFocus();
+            hideKeyboard(view);
+            ShowTeachers(view);
+        });
 
         fabAddTeacher.setOnClickListener(v -> showItemDialog(-1));
 
         return view;
+    }
+
+    private void hideKeyboard(View view) {
+        InputMethodManager imm = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     private void ShowTeachers(View view) {

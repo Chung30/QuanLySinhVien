@@ -32,10 +32,10 @@ public class ViewPageAccount extends AppCompatActivity {
                     tab.setText("Admin");
                     break;
                 case 1:
-                    tab.setText("Teacher");
+                    tab.setText("Giảng viên");
                     break;
                 case 2:
-                    tab.setText("Student");
+                    tab.setText("Sinh viên");
                     break;
             }
         }).attach();
